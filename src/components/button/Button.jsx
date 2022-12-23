@@ -1,7 +1,7 @@
 import styles from "./button.module.css";
 
 export default function Button(props) {
-  console.log(props);
+  /* console.log(props); */
 
   return (
     <button style={{ backgroundColor: props.color }} className={styles.btn}>
@@ -12,7 +12,7 @@ export default function Button(props) {
 
 // named exports
 export function ButtonChild(props) {
-  console.log(props);
+  /*  console.log(props); */
 
   return (
     <button style={{ backgroundColor: props.color }} className={styles.btn}>
