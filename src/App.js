@@ -1,16 +1,15 @@
 import "./App.scss";
 import "./navbar.css";
-
 import NavBar from "./components/navbar/NavBar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import ItemDetailContainer from "./components/itemDetailContainer/ItemDetailContainer";
 
-// Componente APP
 function App() {
   return (
     <>
       <NavBar />
-      {/* <Examples /> */}
-      <ItemListContainer />
+      {/* <ItemListContainer /> */}
+      <ItemDetailContainer />
     </>
   );
 }

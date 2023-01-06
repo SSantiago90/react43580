@@ -17,9 +17,9 @@ function Item({ title, price, detail, imgurl }) {
       </div>
       <div className="item-card_detail">
         <h4>$ {price}</h4>
-        <p>{detail}</p>
-        <ButtonChild>Ver detalle</ButtonChild>
+        <small>{detail}</small>
       </div>
+      <ButtonChild>Ver detalle</ButtonChild>
     </div>
   );
 }
