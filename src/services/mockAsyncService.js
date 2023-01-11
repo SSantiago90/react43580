@@ -290,20 +290,35 @@ const databaseItems = [
   },
 ];
 
-function getItems() {
+export default function getItems() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(databaseItems);
-    }, 2000);
+    }, 1);
   });
 }
 
-export function getSingleItem() {
-  return new Promise((resolve) => {
+export function getSingleItem(itemid) {
+  // 3. Usamos find para encontrar el producto deseado
+  let itemReq = databaseItems.find((item) => {
+    //console.log(item, itemid);
+    return item.id === parseInt(itemid);
+  });
+
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(databaseItems[0]);
-    }, 2000);
+      if (itemReq !== undefined) resolve(itemReq);
+      else reject("Item no encontrado en la base de datos.");
+    }, 200);
   });
 }
 
-export default getItems;
+export function getItemsByCategory(categoryid) {
+  let itemsCat = databaseItems.filter((item) => item.category === categoryid);
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(itemsCat);
+    }, 200);
+  });
+}

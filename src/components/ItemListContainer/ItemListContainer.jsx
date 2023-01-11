@@ -1,21 +1,30 @@
 import React, { useState, useEffect } from "react";
 import FlexWrapper from "../flexWrapper/FlexWrapper";
 import Item from "../Item/Item";
-import getItems from "../../services/mockAsyncService";
+import getItems, { getItemsByCategory } from "../../services/mockAsyncService";
 import ItemList from "../itemList/ItemList";
 
 function ItemListContainer() {
   const [products, setProducts] = useState([]);
 
-  console.log("Renderizamos el componente...");
+  // useParams()
+  // en homepage "/" -> categoryid = undefined
+  // en categoria "/category/smartphones" -> categoryid = "smartphones"
+  let idcategory = "smartphones";
 
-  useEffect( () => {
-    getItems().then((respuesta) => {
-      console.log(respuesta);
-      setProducts(respuesta);
-    });
-   }, [])
-  
+  useEffect(() => {
+    if (idcategory) {
+      getItemsByCategory(idcategory).then((respuesta) => {
+        console.log(respuesta);
+        setProducts(respuesta);
+      });
+    } else {
+      getItems().then((respuesta) => {
+        console.log(respuesta);
+        setProducts(respuesta);
+      });
+    }
+  }, []);
 
   return (
     <>
