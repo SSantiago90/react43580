@@ -3,7 +3,9 @@ import React, { useState } from "react";
 function ToggleButton(props) {
   const [isActive, setIsActive] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (evt) => {
+    evt.preventDefault();
+    evt.stopPropagation();
     setIsActive(!isActive);
   };
 

@@ -294,14 +294,20 @@ export default function getItems() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(databaseItems);
-    }, 1);
+    }, 500);
+  });
+}
+
+export function authUser(userLoginData) {
+  return new Promise((res, rej) => {
+    if (userLoginData === 123) res("ok");
+    else rej("usuario no autenticado");
   });
 }
 
 export function getSingleItem(itemid) {
   // 3. Usamos find para encontrar el producto deseado
   let itemReq = databaseItems.find((item) => {
-    //console.log(item, itemid);
     return item.id === parseInt(itemid);
   });
 

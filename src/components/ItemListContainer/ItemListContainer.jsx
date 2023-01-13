@@ -9,10 +9,10 @@ function ItemListContainer() {
 
   let idcategory = undefined;
 
-  useEffect(() => {
+  // con .then .catch
+  /*  useEffect(() => {
     if (idcategory) {
       getItems(idcategory).then((respuesta) => {
-        console.log(respuesta);
         setProducts(respuesta);
       });
     } else {
@@ -21,11 +21,32 @@ function ItemListContainer() {
         setProducts(respuesta);
       });
     }
+  }, []); */
+
+  //con async await - try catch
+  async function getProducts() {
+    if (!idcategory) {
+      try {
+        let response = await getItems();
+        setProducts(response);
+      } catch (error) {
+        alert(error);
+      }
+    } else {
+      let response = await getItemsByCategory(idcategory);
+      setProducts(response);
+    }
+  }
+
+  useEffect(() => {
+    getProducts();
   }, []);
 
   return (
     <>
-      <ItemList products={products} />
+      <div>
+        <ItemList products={products} />
+      </div>
     </>
   );
 }
