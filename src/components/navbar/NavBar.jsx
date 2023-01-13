@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
+import Button, { ButtonChild } from "../button/Button";
 import "./navbar.css";
 
-function NavBar() {
+function NavBar({ onLogin }) {
+  let inputUsername = "Christian";
+
   return (
     <nav>
       <ul className="nav-menu">
@@ -23,21 +26,9 @@ function NavBar() {
           </Link>
         </li>
 
-        <li className="nav-item">
-          <Link className="nav-link" to="/contacto">
-            Contacto
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <a className="nav-link" href="https://www.wikipedia.org">
-            Wikipedia
-          </a>
-        </li>
-
+        <ButtonChild onTouch={() => onLogin(inputUsername)}>Login</ButtonChild>
         {/* <CartWidget/> */}
         <span>🛒</span>
-        {/* FontAwsome */}
       </ul>
     </nav>
   );

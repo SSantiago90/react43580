@@ -1,7 +1,6 @@
 import "./App.scss";
 import "./navbar.css";
 import NavBar from "./components/navbar/NavBar";
-import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/itemDetailContainer/ItemDetailContainer";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -9,9 +8,13 @@ import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
+  function handleLogin(username) {
+    alert(`${username} Iniciaste sesión`);
+  }
+
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar onLogin={handleLogin} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/category/:categoryid" element={<HomePage />} />

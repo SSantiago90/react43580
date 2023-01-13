@@ -7,14 +7,11 @@ import ItemList from "../itemList/ItemList";
 function ItemListContainer() {
   const [products, setProducts] = useState([]);
 
-  // useParams()
-  // en homepage "/" -> categoryid = undefined
-  // en categoria "/category/smartphones" -> categoryid = "smartphones"
-  let idcategory = "smartphones";
+  let idcategory = undefined;
 
   useEffect(() => {
     if (idcategory) {
-      getItemsByCategory(idcategory).then((respuesta) => {
+      getItems(idcategory).then((respuesta) => {
         console.log(respuesta);
         setProducts(respuesta);
       });

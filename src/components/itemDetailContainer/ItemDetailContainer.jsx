@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleItem } from "../../services/mockAsyncService";
+import Button, { ButtonChild } from "../button/Button";
+import ItemCount from "../itemCount/ItemCount";
 import "./itemdetail.css";
 
 function ItemDetailContainer() {
   const [product, setProduct] = useState([]);
-
-  // 1. obtenemos el valor de la URL con useParams
   let { itemid } = useParams();
   console.log(itemid);
-  // { itemid: "1" }
+
+  // onAddtoCart
+  function handleAddToCart() {
+    alert(`Agregaste x ${product.title} al carrito`);
+  }
 
   useEffect(() => {
-    // 2. Pasamos por parametro al mockService el id
     getSingleItem(itemid)
       .then((respuesta) => {
         setProduct(respuesta);
@@ -21,6 +24,7 @@ function ItemDetailContainer() {
   }, []);
 
   return (
+    /* <ItemDetail> */
     <div className="card-detail_main">
       <div className="card-detail_img">
         <img src={product.imgurl} alt={product.title} />
@@ -30,6 +34,8 @@ function ItemDetailContainer() {
         <h2 className="priceTag">$ {product.price}</h2>
         <small>{product.detail}</small>
       </div>
+      <ItemCount /* props */ />
+      <ButtonChild>Ir al carrito</ButtonChild>
     </div>
   );
 }
