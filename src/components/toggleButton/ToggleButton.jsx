@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+//1 api del clima -> app del clima -> fetch -> materialui
+//2 api del peliculas -> app del clima -> fetch -> materialui -> useForm, Formik
+
 function ToggleButton(props) {
   const [isActive, setIsActive] = useState(false);
 

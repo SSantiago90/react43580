@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button, { ButtonChild } from "../button/Button";
 import "./itemcount.css";
 
-function ItemCount() {
+function ItemCount({ onAddToCart }) {
   const [count, setCount] = useState(0);
 
   function handleAdd() {
@@ -29,7 +29,7 @@ function ItemCount() {
       </div>
 
       <div className="itemcount_btns">
-        <button className="btn" onClick={() => alert("onAddToCart")}>
+        <button className="btn" onClick={() => onAddToCart(count)}>
           Agregar al carrito
         </button>
       </div>
