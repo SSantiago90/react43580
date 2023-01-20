@@ -3,6 +3,14 @@ a{
   text-decoration: none;
 }
 
+.price-discount{
+  color: darkolivegreen;
+}
+
+.font-xl{
+  font-size: 20 px;
+}
+
 .item-card{
   text-align: center;
   position: relative;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getSingleItem } from "../../services/mockAsyncService";
 import { cartContext } from "../../storage/cartContext";
 import Button, { ButtonChild } from "../button/Button";
@@ -7,13 +7,16 @@ import ItemCount from "../itemCount/ItemCount";
 import "./itemdetail.css";
 
 function ItemDetailContainer() {
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
+  const [isInCart, setIsInCart] = useState(false);
+
   let { itemid } = useParams();
 
   const { addItem, removeItem } = useContext(cartContext);
 
   // onAddtoCart
   function handleAddToCart(count) {
+    setIsInCart(true);
     alert(`Agregaste ${count} de ${product.title} al carrito`);
     product.count = count;
     addItem(product);
@@ -38,8 +41,13 @@ function ItemDetailContainer() {
         <h2 className="priceTag">$ {product.price}</h2>
         <small>{product.detail}</small>
       </div>
+
       <ItemCount onAddToCart={handleAddToCart} />
-      <ButtonChild>Ir al carrito</ButtonChild>
+
+      <Link to="/cart">
+        <ButtonChild>Ir al carrito</ButtonChild>
+      </Link>
+
       <button onClick={() => removeItem(product.id)}>Eliminar Item</button>
       <button>Vaciar Carrito</button>
     </div>

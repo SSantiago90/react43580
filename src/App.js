@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { CartContextProvider } from "./storage/cartContext";
+import CartContainer from "./components/cartContainer/CartContainer";
 
 function App() {
   function handleLogin(username) {
@@ -26,6 +27,7 @@ function App() {
             <Route path="/category/:categoryid" element={<HomePage />} />
 
             <Route path="/item/:itemid" element={<ItemDetailContainer />} />
+            <Route path="/cart" element={<CartContainer />} />
 
             <Route path="/contacto" element={<h1>Conctacto</h1>} />
 

@@ -5,10 +5,10 @@ const databaseItems = [
     category: "smartphones",
     stock: 2,
     title: "iPhone 9",
+    discount: 25,
     price: 649,
     imgurl: "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
     detail: "An apple mobile which is nothing like apple",
-    discount: 50,
   },
   {
     id: 2,
@@ -26,6 +26,7 @@ const databaseItems = [
     title: "OPPOF19",
     detail: "OPPO F19 is officially announced on April 2021.",
     price: 280,
+    discount: 50,
     stock: 123,
     category: "smartphones",
     imgurl: "https://dummyjson.com/image/i/products/4/thumbnail.jpg",
@@ -291,10 +292,11 @@ const databaseItems = [
 ];
 
 export default function getItems() {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
+      /* reject("no hay productos"); */
       resolve(databaseItems);
-    }, 500);
+    }, 1500);
   });
 }
 
@@ -315,7 +317,7 @@ export function getSingleItem(itemid) {
     setTimeout(() => {
       if (itemReq !== undefined) resolve(itemReq);
       else reject("Item no encontrado en la base de datos.");
-    }, 200);
+    }, 3500);
   });
 }
 
