@@ -317,7 +317,7 @@ export function getSingleItem(itemid) {
     setTimeout(() => {
       if (itemReq !== undefined) resolve(itemReq);
       else reject("Item no encontrado en la base de datos.");
-    }, 3500);
+    }, 1500);
   });
 }
 
@@ -327,6 +327,6 @@ export function getItemsByCategory(categoryid) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(itemsCat);
-    }, 200);
+    }, 1500);
   });
 }

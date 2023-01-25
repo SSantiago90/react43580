@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getSingleItem } from "../../services/mockAsyncService";
+import { getSingleItem } from "../../services/firebase";
 import { cartContext } from "../../storage/cartContext";
 import Button, { ButtonChild } from "../button/Button";
 import ItemCount from "../itemCount/ItemCount";
@@ -12,7 +12,7 @@ function ItemDetailContainer() {
 
   let { itemid } = useParams();
 
-  const { addItem, removeItem } = useContext(cartContext);
+  const { addItem } = useContext(cartContext);
 
   // onAddtoCart
   function handleAddToCart(count) {
@@ -47,9 +47,6 @@ function ItemDetailContainer() {
       <Link to="/cart">
         <ButtonChild>Ir al carrito</ButtonChild>
       </Link>
-
-      <button onClick={() => removeItem(product.id)}>Eliminar Item</button>
-      <button>Vaciar Carrito</button>
     </div>
   );
 }

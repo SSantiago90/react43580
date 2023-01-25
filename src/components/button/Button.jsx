@@ -12,8 +12,6 @@ export default function Button(props) {
 
 // named exports
 export function ButtonChild(props) {
-  console.log(props);
-
   function handleClick() {
     console.log("...");
     props.onTouch();

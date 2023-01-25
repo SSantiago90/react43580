@@ -1,25 +1,51 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useContext } from "react";
 import { cartContext } from "../../storage/cartContext";
+import { ButtonChild } from "../button/Button";
+import "./cart.css";
 
 function CartContainer() {
-  const { cart, removeItem, getTotalPriceInCart } = useContext(cartContext);
+  const { cart } = useContext(cartContext);
 
   return (
-    <div>
-      <h1>Tu carrito</h1>
-      <div>
-        {cart.map((item) => (
-          <div className="cart-item">
-            <h3>{item.title}</h3>
-            <img width="100" src={item.imgurl} alt="img" />
-            <p>${item.price}</p>
-            <p>{item.count}</p>
-            <button>X</button>
-          </div>
-        ))}
+    <>
+      <h1>Tu Carrito</h1>
+
+      <table className="cartList">
+        <thead className="cartList_head">
+          <tr className="cartList_row">
+            <th>Miniatura</th>
+            <th>Titulo</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Remover</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cart.map((item) => (
+            <tr key={item.id} className="cartList_row">
+              <td>
+                <img height={50} src={item.imgurl} alt={item.title} />
+              </td>
+              <td>{item.title}</td>
+              <td>$ {item.price}</td>
+              <td>{item.count}</td>
+              <td>
+                <ButtonChild color="#c63224" onClick={item.removeItem}>
+                  X
+                </ButtonChild>
+              </td>
+              <th>$ --,--</th>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <div className="cartList_detail">
+        <h4>El total de tu compra es de $ --,--</h4>
       </div>
-      <small>El total de tu compra es de:${getTotalPriceInCart()}</small>
-    </div>
+    </>
   );
 }
 

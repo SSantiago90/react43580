@@ -4,7 +4,7 @@
   max-width: 720px;
   height:100%;
   width:100%;
-  margin:0 auto;
+  margin: 15px auto;
   padding:0;
   overflow: hidden;
   position: relative;  
@@ -17,8 +17,8 @@
   display: block;
   border-radius: 6px;
   margin: 0 auto;
-  -webkit-animation: cssAnimation 3s forwards; 
-  animation: cssAnimation 0s ease-in 3s forwards;
+  -webkit-animation: cssAnimation 883s forwards; 
+  animation: cssAnimation 0s ease-in 883s forwards;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }

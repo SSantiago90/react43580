@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import FlexWrapper from "../flexWrapper/FlexWrapper";
 import Item from "../Item/Item";
-import getItems, { getItemsByCategory } from "../../services/mockAsyncService";
+
+import { getItemsByCategory } from "../../services/firebase";
+import { getItemsPromise, getItems } from "../../services/firebase";
+
 import ItemList from "../itemList/ItemList";
 import Loader from "../Loader/Loader";
 import Notification from "../notification/Notification";
 
-import "./alert.css";
 function ItemListContainer() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -36,7 +38,7 @@ function ItemListContainer() {
   async function getProducts() {
     if (!idcategory) {
       try {
-        let response = await getItems();
+        let response = await getItemsPromise();
         setProducts(response);
         setNotification({
           type: "default",
@@ -63,15 +65,17 @@ function ItemListContainer() {
   }, []);
 
   return (
-    <div>
+    <FlexWrapper column>
       {notification.type && <Notification notification={notification} />}
 
       {isLoading ? (
-        <Loader color="blue" size={500} />
+        <FlexWrapper>
+          <Loader color="blue" size={500} />
+        </FlexWrapper>
       ) : (
         <ItemList products={products} />
       )}
-    </div>
+    </FlexWrapper>
   );
 }
 
