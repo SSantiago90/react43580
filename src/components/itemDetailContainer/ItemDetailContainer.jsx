@@ -12,7 +12,14 @@ function ItemDetailContainer() {
 
   let { itemid } = useParams();
 
-  const { addItem } = useContext(cartContext);
+  const { cart, addItem } = useContext(cartContext);
+
+  const itemInCart = cart.find((item) => item.id === product.id);
+
+  let stockUpdated;
+
+  if (itemInCart) stockUpdated = product.stock - itemInCart.count;
+  else stockUpdated = product.stock;
 
   // onAddtoCart
   function handleAddToCart(count) {
@@ -42,7 +49,7 @@ function ItemDetailContainer() {
         <small>{product.detail}</small>
       </div>
 
-      <ItemCount onAddToCart={handleAddToCart} />
+      <ItemCount stock={stockUpdated} onAddToCart={handleAddToCart} />
 
       <Link to="/cart">
         <ButtonChild>Ir al carrito</ButtonChild>
