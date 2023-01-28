@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from "react";
-import getItems, { getItemsByCategory } from "../../services/mockAsyncService";
+import { getItemsByCategory } from "../../services/firebase";
+import { getItems } from "../../services/firebase";
+
 import ItemList from "../itemList/ItemList";
 import Loader from "../Loader/Loader";
+import { useParams } from "react-router";
 
 function ItemListContainer() {
   const [products, setProducts] = useState([]);
 
-  let idcategory = undefined;
+  let { category } = useParams();
 
   useEffect(() => {
-    if (idcategory) {
-      getItems(idcategory).then((respuesta) => {
-        setProducts(respuesta);
-      });
-    } else {
+    if (!category) {
       getItems().then((respuesta) => {
         console.log(respuesta);
         setProducts(respuesta);
       });
+    } else {
+      getItemsByCategory(category).then((respuesta) => {
+        console.log(respuesta);
+        setProducts(respuesta);
+      });
     }
-  }, []);
+  }, [category]);
 
   //1 -> Rendering con Ternary Operator
   return (

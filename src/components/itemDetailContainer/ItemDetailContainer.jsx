@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getSingleItem } from "../../services/mockAsyncService";
+import { getSingleItem } from "../../services/firebase";
 import { cartContext } from "../../storage/cartContext";
 import Button from "../button/Button";
 import ItemCount from "../itemCount/ItemCount";

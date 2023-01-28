@@ -9,7 +9,13 @@ import NotFoundPage from "./pages/NotFoundPage";
 import { CartContextProvider } from "./storage/cartContext";
 import CartContainer from "./components/cartContainer/cartContainer";
 
+import { app } from "./services/firebase";
+import { getItems } from "./services/firebase";
+
 function App() {
+  //TESTING FIREBASE
+  getItems();
+
   return (
     <>
       <CartContextProvider>
@@ -17,7 +23,7 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/category/:categoryid" element={<HomePage />} />
+            <Route path="/category/:category" element={<HomePage />} />
 
             <Route path="/item/:itemid" element={<ItemDetailContainer />} />
 

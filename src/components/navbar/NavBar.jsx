@@ -15,14 +15,14 @@ function NavBar({ onLogin }) {
         </h2>
 
         <li className="nav-item">
-          <Link className="nav-link" to="/category/smartphones">
-            Smarphones
+          <Link className="nav-link" to="/category/remeras">
+            Remeras
           </Link>
         </li>
 
         <li className="nav-item">
-          <Link className="nav-link" to="/category/laptops">
-            Laptops
+          <Link className="nav-link" to="/category/gorras">
+            Gorras
           </Link>
         </li>
 
