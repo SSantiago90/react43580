@@ -298,13 +298,6 @@ export default function getItems() {
   });
 }
 
-export function authUser(userLoginData) {
-  return new Promise((res, rej) => {
-    if (userLoginData === 123) res("ok");
-    else rej("usuario no autenticado");
-  });
-}
-
 export function getSingleItem(itemid) {
   // 3. Usamos find para encontrar el producto deseado
   let itemReq = databaseItems.find((item) => {

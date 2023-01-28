@@ -1,5 +1,3 @@
-import { createContext, useContext } from "react";
-
 import "./App.scss";
 import "./navbar.css";
 import NavBar from "./components/navbar/NavBar";
@@ -11,16 +9,11 @@ import NotFoundPage from "./pages/NotFoundPage";
 import { CartContextProvider } from "./storage/cartContext";
 
 function App() {
-  function handleLogin(username) {
-    alert(`${username} Iniciaste sesión`);
-  }
-
   return (
-    //3. Renderizamos el provider y su value
     <>
       <CartContextProvider>
         <BrowserRouter>
-          <NavBar onLogin={handleLogin} />
+          <NavBar />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/category/:categoryid" element={<HomePage />} />

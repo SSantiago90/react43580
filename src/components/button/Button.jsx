@@ -1,8 +1,7 @@
 import styles from "./button.module.css";
 
-export default function Button(props) {
-  /* console.log(props); */
-
+// named exports
+export function Button_Prop(props) {
   return (
     <button style={{ backgroundColor: props.color }} className={styles.btn}>
       {props.text}
@@ -10,13 +9,9 @@ export default function Button(props) {
   );
 }
 
-// named exports
-export function ButtonChild(props) {
-  console.log(props);
-
+export default function Button(props) {
   function handleClick() {
-    console.log("...");
-    props.onTouch();
+    props.onClick();
   }
 
   return (

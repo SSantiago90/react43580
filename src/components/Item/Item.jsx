@@ -2,7 +2,7 @@ import React from "react";
 
 import "./item.css";
 
-import { ButtonChild } from "../button/Button";
+import Button from "../button/Button";
 import ToggleButton from "../toggleButton/ToggleButton";
 import { Link } from "react-router-dom";
 
@@ -25,7 +25,7 @@ function Item({ id, title, price, detail, imgurl }) {
           <small>{detail}</small>
         </div>
 
-        <ButtonChild>Ver detalle</ButtonChild>
+        <Button>Ver detalle</Button>
       </div>
     </Link>
   );

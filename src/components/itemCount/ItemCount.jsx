@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button, { ButtonChild } from "../button/Button";
+import Button from "../button/Button";
 import "./itemcount.css";
 
 function ItemCount({ onAddToCart }) {

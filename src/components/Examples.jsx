@@ -1,5 +1,5 @@
 import logo from "../logo.svg";
-import Button, { ButtonChild } from "./button/Button";
+import Button from "./button/Button";
 import FlexWrapper from "./flexWrapper/FlexWrapper";
 
 function Examples() {
@@ -48,7 +48,7 @@ function Examples() {
         <Button text="Botón A" color="blue" />
         <Button text="Otro botón" color="indigo" />
         <Button text="Soy el último" color="orange" />
-        <ButtonChild color="darkgreen">Ver detalle</ButtonChild>
+        <Button color="darkgreen">Ver detalle</Button>
       </FlexWrapper>
       <hr />
     </section>

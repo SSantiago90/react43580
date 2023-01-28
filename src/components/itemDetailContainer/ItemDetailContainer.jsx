@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleItem } from "../../services/mockAsyncService";
 import { cartContext } from "../../storage/cartContext";
-import Button, { ButtonChild } from "../button/Button";
+import Button from "../button/Button";
 import ItemCount from "../itemCount/ItemCount";
 import "./itemdetail.css";
 
@@ -39,7 +39,7 @@ function ItemDetailContainer() {
         <small>{product.detail}</small>
       </div>
       <ItemCount onAddToCart={handleAddToCart} />
-      <ButtonChild>Ir al carrito</ButtonChild>
+      <Button>Ir al carrito</Button>
       <button onClick={() => removeItem(product.id)}>Eliminar Item</button>
       <button>Vaciar Carrito</button>
     </div>
