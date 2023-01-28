@@ -1,319 +1,92 @@
 /* -------------- BACK-END (API, database, servicio) -------------- */
-const databaseItems = [
+
+let productos = [
   {
-    id: 1,
-    category: "smartphones",
-    stock: 2,
-    title: "iPhone 9",
-    price: 649,
-    imgurl: "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
-    detail: "An apple mobile which is nothing like apple",
+    id: "1",
+    categoria: "remeras",
+    name: "producto 1",
     discount: 50,
+    envio: "gratis",
+    price: 37,
+    stock: 5,
+    foto: "https://brunosmoda.com/wp-content/uploads/2021/01/CAMISETA-NEGRA-LISA-HOMBRE-10043675_000-5.jpg",
   },
   {
-    id: 2,
-    title: "iPhone X",
-    newProduct: true,
-    detail:
-      "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-    price: 899,
-    stock: 34,
-    category: "smartphones",
-    imgurl: "https://dummyjson.com/image/i/products/2/thumbnail.jpg",
+    id: "2",
+    categoria: "remeras",
+    name: "producto 2",
+    price: 27,
+    stock: 3,
+    foto: "https://brunosmoda.com/wp-content/uploads/2021/01/CAMISETA-NEGRA-LISA-HOMBRE-10043675_000-5.jpg",
   },
   {
-    id: 4,
-    title: "OPPOF19",
-    detail: "OPPO F19 is officially announced on April 2021.",
-    price: 280,
-    stock: 123,
-    category: "smartphones",
-    imgurl: "https://dummyjson.com/image/i/products/4/thumbnail.jpg",
-  },
-  {
-    id: 5,
-    title: "Huawei P30",
-    detail:
-      "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
-    price: 499,
-    stock: 32,
-    category: "smartphones",
-    imgurl: "https://dummyjson.com/image/i/products/5/thumbnail.jpg",
-  },
-  {
-    id: 6,
-    title: "MacBook Pro",
-    detail:
-      "MacBook Pro 2021 with mini-LED display may launch between September, November",
-    price: 1749,
-    stock: 83,
-    category: "laptops",
-    imgurl: "https://dummyjson.com/image/i/products/6/thumbnail.png",
-  },
-  {
-    id: 7,
-    title: "Samsung Galaxy Book",
-    detail:
-      "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
-    price: 1499,
-    stock: 50,
-    category: "laptops",
-    imgurl: "https://dummyjson.com/image/i/products/7/thumbnail.jpg",
-    discount: 40,
-  },
-  {
-    id: 8,
-    title: "Microsoft Surface Laptop 4",
-    detail:
-      "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
-    price: 1499,
-    stock: 68,
-    category: "laptops",
-    imgurl: "https://dummyjson.com/image/i/products/8/thumbnail.jpg",
-  },
-  {
-    id: 9,
-    title: "Infinix INBOOK",
-    detail:
-      "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
-    price: 1099,
-    stock: 96,
-    category: "laptops",
-    imgurl: "https://dummyjson.com/image/i/products/9/thumbnail.jpg",
-    newProduct: true,
-  },
-  {
-    id: 10,
-    title: "HP Pavilion 15-DK1056WM",
-    detail:
-      "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
-    price: 1099,
-    stock: 89,
-    category: "laptops",
-    imgurl: "https://dummyjson.com/image/i/products/10/thumbnail.jpeg",
-  },
-  {
-    id: 11,
-    title: "perfume Oil",
-    detail:
-      "Mega Discount, Impression of Acqua Di Gio by GiorgioArmani concentrated attar perfume Oil",
-    price: 13,
-    stock: 65,
-    category: "fragrances",
-    imgurl: "https://dummyjson.com/image/i/products/11/thumbnail.jpg",
-  },
-  {
-    id: 12,
-    title: "Brown Perfume",
-    detail: "Royal_Mirage Sport Brown Perfume for Men & Women - 120ml",
+    id: "3",
+    categoria: "remeras",
+    name: "producto 3",
+    discount: 25,
     price: 40,
-    stock: 52,
-    category: "fragrances",
-    imgurl: "https://dummyjson.com/image/i/products/12/thumbnail.jpg",
-  },
-  {
-    id: 13,
-    title: "Fog Scent Xpressio Perfume",
-    detail:
-      "Product details of Best Fog Scent Xpressio Perfume 100ml For Men cool long lasting perfumes for Men",
-    price: 13,
-    stock: 61,
-    category: "fragrances",
-    imgurl: "https://dummyjson.com/image/i/products/13/thumbnail.webp",
-  },
-  {
-    id: 14,
-    title: "Non-Alcoholic Concentrated Perfume Oil",
-    detail:
-      "Original Al Munakh® by Mahal Al Musk | Our Impression of Climate | 6ml Non-Alcoholic Concentrated Perfume Oil",
-    price: 120,
-    stock: 114,
-    category: "fragrances",
-    imgurl: "https://dummyjson.com/image/i/products/14/thumbnail.jpg",
-  },
-  {
-    id: 15,
-    title: "Eau De Perfume Spray",
-    detail:
-      "Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality",
-    price: 30,
-    stock: 105,
-    category: "fragrances",
-    imgurl: "https://dummyjson.com/image/i/products/15/thumbnail.jpg",
-  },
-  {
-    id: 16,
-    title: "Hyaluronic Acid Serum",
-    detail:
-      "L'OrÃ©al Paris introduces Hyaluron Expert Replumping Serum formulated with 1.5% Hyaluronic Acid",
-    price: 19,
-    stock: 110,
-    category: "skincare",
-    imgurl: "https://dummyjson.com/image/i/products/16/thumbnail.jpg",
-  },
-  {
-    id: 17,
-    title: "Tree Oil 30ml",
-    detail:
-      "Tea tree oil contains a number of compounds, including terpinen-4-ol, that have been shown to kill certain bacteria,",
-    price: 12,
-    stock: 78,
-    category: "skincare",
-    imgurl: "https://dummyjson.com/image/i/products/17/thumbnail.jpg",
-  },
-  {
-    id: 18,
-    title: "Oil Free Moisturizer 100ml",
-    detail:
-      "Dermive Oil Free Moisturizer with SPF 20 is specifically formulated with ceramides, hyaluronic acid & sunscreen.",
-    price: 40,
-    stock: 88,
-    category: "skincare",
-    imgurl: "https://dummyjson.com/image/i/products/18/thumbnail.jpg",
-  },
-  {
-    id: 19,
-    title: "Skin Beauty Serum.",
-    detail:
-      "Product name: rorec collagen hyaluronic acid white face serum riceNet weight: 15 m",
-    price: 46,
-    stock: 54,
-    category: "skincare",
-    imgurl: "https://dummyjson.com/image/i/products/19/thumbnail.jpg",
-  },
-  {
-    id: 20,
-    title: "Freckle Treatment Cream- 15gm",
-    detail:
-      "Fair & Clear is Pakistan's only pure Freckle cream which helpsfade Freckles, Darkspots and pigments. Mercury level is 0%, so there are no side effects.",
-    price: 70,
-    stock: 140,
-    category: "skincare",
-    imgurl: "https://dummyjson.com/image/i/products/20/thumbnail.jpg",
-  },
-  {
-    id: 21,
-    title: "- Daal Masoor 500 grams",
-    detail: "Fine quality Branded Product Keep in a cool and dry place",
-    price: 20,
-    stock: 133,
-    category: "groceries",
-    imgurl: "https://dummyjson.com/image/i/products/21/thumbnail.png",
-  },
-  {
-    id: 22,
-    title: "Elbow Macaroni - 400 gm",
-    detail: "Product details of Bake Parlor Big Elbow Macaroni - 400 gm",
-    price: 14,
-    stock: 146,
-    category: "groceries",
-    imgurl: "https://dummyjson.com/image/i/products/22/thumbnail.jpg",
-  },
-  {
-    id: 23,
-    title: "Orange Essence Food Flavou",
-    detail:
-      "Specifications of Orange Essence Food Flavour For Cakes and Baking Food Item",
-    price: 14,
-    stock: 26,
-    category: "groceries",
-    imgurl: "https://dummyjson.com/image/i/products/23/thumbnail.jpg",
-  },
-  {
-    id: 24,
-    title: "cereals muesli fruit nuts",
-    detail:
-      "original fauji cereal muesli 250gm box pack original fauji cereals muesli fruit nuts flakes breakfast cereal break fast faujicereals cerels cerel foji fouji",
-    price: 46,
-    stock: 113,
-    category: "groceries",
-    imgurl: "https://dummyjson.com/image/i/products/24/thumbnail.jpg",
-  },
-  {
-    id: 25,
-    title: "Gulab Powder 50 Gram",
-    detail: "Dry Rose Flower Powder Gulab Powder 50 Gram • Treats Wounds",
-    price: 70,
-    stock: 47,
-    category: "groceries",
-    imgurl: "https://dummyjson.com/image/i/products/25/thumbnail.jpg",
-  },
-  {
-    id: 26,
-    title: "Plant Hanger For Home",
-    detail:
-      "Boho Decor Plant Hanger For Home Wall Decoration Macrame Wall Hanging Shelf",
-    price: 41,
-    stock: 131,
-    category: "home-decoration",
-    imgurl: "https://dummyjson.com/image/i/products/26/thumbnail.jpg",
-  },
-  {
-    id: 27,
-    title: "Flying Wooden Bird",
-    detail:
-      "Package Include 6 Birds with Adhesive Tape Shape: 3D Shaped Wooden Birds Material: Wooden MDF, Laminated 3.5mm",
-    price: 51,
-    stock: 17,
-    category: "home-decoration",
-    imgurl: "https://dummyjson.com/image/i/products/27/thumbnail.webp",
-  },
-  {
-    id: 28,
-    title: "3D Embellishment Art Lamp",
-    detail:
-      "3D led lamp sticker Wall sticker 3d wall art light on/off button  cell operated (included)",
-    price: 20,
-    stock: 54,
-    category: "home-decoration",
-    imgurl: "https://dummyjson.com/image/i/products/28/thumbnail.jpg",
-  },
-  {
-    id: 29,
-    title: "Handcraft Chinese style",
-    detail:
-      "Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate",
-    price: 60,
     stock: 7,
-    category: "home-decoration",
-    imgurl: "https://dummyjson.com/image/i/products/29/thumbnail.webp",
+    foto: "https://brunosmoda.com/wp-content/uploads/2021/01/CAMISETA-NEGRA-LISA-HOMBRE-10043675_000-5.jpg",
   },
   {
-    id: 30,
-    title: "Key Holder",
-    detail:
-      "Attractive DesignMetallic materialFour key hooksReliable & DurablePremium Quality",
-    price: 30,
-    stock: 54,
-    category: "home-decoration",
-    imgurl: "https://dummyjson.com/image/i/products/30/thumbnail.jpg",
+    id: "4",
+    categoria: "gorras",
+    name: "producto 4",
+    envio: "gratis",
+    price: 55,
+    stock: 5,
+    foto: "data:image/jpeg;base64,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",
+  },
+  {
+    id: "5",
+    categoria: "gorras",
+    name: "producto 5",
+    price: 11,
+    stock: 3,
+    foto: "data:image/jpeg;base64,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",
+  },
+  {
+    id: "6",
+    categoria: "gorras",
+    name: "producto 6",
+    price: 19,
+    stock: 0,
+    foto: "data:image/jpeg;base64,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",
+  },
+  {
+    id: "7",
+    categoria: "gorras",
+    name: "producto 7",
+    price: 2,
+    stock: 3,
+    foto: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxEREhISEhAVEBUVFQ8VEBUVEBUSFRAVFRIXFhUVFxUYHSggGBolHRUXITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGhAQFysfHh0uLS0tLS0tLS0rLSstLS0rLS0rLTcrLSstLS8tLS0rLS0tLy0rLTUtLSstLS4tLS0tNf/AABEIAOEA4QMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAAAQIDBAUGB//EAEEQAAIBAgMDCAYGCAcAAAAAAAABAgMRBCExBRJRIkFhcYGRobEGE4LB0fAyQ1JTcuEHFBVCYoOSohYXM1SjwtL/xAAZAQEAAwEBAAAAAAAAAAAAAAAAAQMEAgX/xAAkEQEBAAIBBAEFAQEAAAAAAAAAAQIRAxIhMVFBBBMiMnFCFP/aAAwDAQACEQMRAD8A+0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABiqYiEdX2LMi2TymS3wyg0Z7RXNHvZgltCfNZdnxOLy4x3OLKuqVqTUVduyOLPGT+0/Iw1aspKzba4N3K7zz4jucF+XZ/X6f2vBmxFp5p34Hl/Ux4dza8jewmNdOKikmle1731vqRhz3/TrPhmvxdsGhT2nF6xa6szZp4qEtJLqeT8S+Z435UXDKeYzAA6cgAAAAAAAAAAAAAAAAAAAAAYK+JjDpfD4mHFYzmj2v4HPbKOTm12i/Di33rLiMY3q91PJJc/xMFw0DNcrfLRMZPAVbLMoc7daCLEgCtiCuJ33GSg1GTT3ZOO8ovmbjdXXRdEQb5+j8xtOlhcXIZO0abFDGTho8uDzX5HUwuPjPJ8l8OZ9TODf8yUy3HksVZ8Ur1AOTgtotcmea5nzrr4o6yZqxymU7MuWNxoADpyAAAAAAAAAAAAABo47Efur2n7jZxNXdj06I5Rn5s9fjF/DhvvUMqyWQzLtqiACCEqyZFw3r3fPf4EEJpcXBUlAQwQwIbIuGVuBLfj7vl9xFys34Z92vhcMmUsWfH5Z0tm47d5MnyXo/sv4HLUiyLMcrjVeWO49WDnbJxW8tx6r6PSuHYdE2Y5dU2xZTV0AA6QAAAAAAAAAFakrJvghSNDG1Lytwy+JrMs2UZ52WW7tvxmppFyrJOZtva8cNGCt6yrVnGnh6SdnUnKSWbz3YR3k5StkumyfMlt1HXh0Q2VIno+7vyOXUV3sl3vz95Fw3fmIk0lduy4t2SJhUtkNnLq+kWEUnBV41ZrWFFPETXsUlJo6EKl0nmrpOzTTXQ09H0E2WeUblWbIZW5FwJbKhsq2ErFebz6+cXK316345+8Q+E3LqRjJOo4bFGo4tNarQ9LRqKUVJc6PLRZ2di1bqUeGa6nr89Jo4cu+lHNj226YANLMAAAAAAAAGvjpWjbi18TYNHaMs4rrZXy3WNWcc3lGoyjLNlWzBWxB8c9JvSCpHajr23v1aq6cIPTcheE0uDd5u/FrgfYjyPpD6B4bF1XWc6lKUres9XKNptK12pRdnZLQt4c8cbepzyYZZTs5y/SfhrX/V69+Fqdu/f9xqf5hYrEScMHgd93te86zXOt5QSUO1nb2d+j3AUrOVOWIa+9m5L+iNovtTPSwoqEYwhFQir2jGKjFK1skslqMs+Kfrjv8ApjjyXzdPnW0sftSKjLGY6js6M77sVCNSo+qFNSb1131Yz4fZmzJVHHE46eNqQjvz9dXkqcUoqUnk7JJO+65Oxb0g9HMdWxVerCMd2SUaU3Vg0qUKcm6LpyWk52u9Oy7XF/wpjE8P6zBynTioqvTp1qLlU5W/U3nKSXLnzLSEUr30tmrPOv5pXdy+N/19Dp4jB4ZQpRnQw6kk6cFKnS309GllvX4m9c8rsvYVWtiJ43FchznJQw8qVKpu0ocmjeTvuP8Ae5NubM9UzNnJL2u2jG2/Bchskqzl0hsi5LKsILkJ69f/AFiCFz9j93uCUplkURZHatkib+yZ2qR6brwv7jnRNzAu04fij5neF7xxnNx6QAG5iAAAAAAAADnbQfK7F7zonLx75fYvIp5/1XcE/Jrshhsi5htbJFGVaMjZSRy6UbKuWfUvN/kXcTDVWb6l7yK6irqEORDRDY2jRchyIuUciULORXfKtlWyTS++RvmNsgGmXeITzfVHzkURMefqj5v4ki1y6kUZKOlbLFm5gvpw/FHzNOBu4BcuH4o+ZZh5c5eHpAAbmEAAAAAAABE5JJt6I4U6km22lmzdx1e73Votelmm2Y+bLqup8NfDj0zftS74R8SLy4R8S4M+l/UpnwX9T+BX2e6XxsZCGOlPUxuo19XJ9sPiY5VL/VzXc/JmZgjpT1NNwX8a66cvOxiko/eR7XbzOhcjeI6U9bR9TJ6Wl1NGN0p/Zfdc3Z0YPWEX7Kv3lf1ePM5R6py8m7DpOqNB5aprrRFzddKS0qy9pRfkkUlSnz+rl7Lhz9o0bjUbKmedGX3UH1VGvBxRjdJ/dS7Jx6uJOjsqmZIT1615JmGcbawqLufkxRqxtmprOTzhLLN9HSRtOmwrF1E1KlaMIynOpuQim5SlFxjFcW3kjJgcXTrK9KtTrLjTqRqL+1s7l2rsbcEdHZcb1I9F33JmjA6uxIcqT4Lzf5F3HPyink7Y12AAbWMAAAAADBi6+6stXp0dJlqTUVdnJq1N5tsq5c+maW8eG7tQoyxBjrXEAkghKCCWQwhVkMllWHSrZFyCrYFri5S5N/m5AkFbhsCbkMhsBIyNxEmzgcK6krcyzk+gmTd1EWyTdYMX6L0sdh5Uq7nGEnFrclut7rum8s1ezt0Hi8f+hNJ72HxjjJfR9ZC0l1ThZrrPrsYpJJZJaEm/HDpmmHLkuV2+S7O2Ft/BSV3DH0la8JVrzt/DUkt5PrbXQfS9jU2ob0oODlZ7sklKOWjs3nmzfAmEl2i52zQADtwAAAAANPGQnJ2UW1zGBYGo/srtb8jpgrvFLd1ZOWyajm/s6f24r2Wyj2XU++iv5L8986oH2sPR93P25L2RP/cf8S/9FXsirzYiPbQb8qiOwB9rD0j7mXtxf2XXX1tOX8uUPHekY54PER+rjPhuVE3/AHqNjvAi8OFTOXOfLy9Wtuf6kZU+LlFqK9v6PiSpp2ad76dJ6c062zKMm36tRbzbjyG307tt7tuV36f1Vk+o9xwpFWdWpsZ/u1L/AIkvNfA0cRhakPpQy4rNeGhTlx5Y+Yvx5McvFa4v82IBwsTcghv5sAhIFi0ItuyV29EErUqbk1FK7eSPR4TDqnFRXtPizDs7BKmrvOT16OhG4bOLj6e98sXNydV1PAAC5SAAAAAAAAAAAAAAAAAAAAAAAAAADVxGz6c83Gz4xyZz62xpL6ElLokrPvR2gcZceN8xZjyZT5ebngKq1pvstLyMSwtRu3q5f0s9SCq/Tz2s/wCi+nBobKqPXkLpzfcjrYXBwp6K7529fyNgFmPFjiry5csgAFisAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/2Q==",
   },
 ];
 
 export default function getItems() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(databaseItems);
+      resolve(productos);
     }, 500);
   });
 }
 
 export function getSingleItem(itemid) {
   // 3. Usamos find para encontrar el producto deseado
-  let itemReq = databaseItems.find((item) => {
-    return item.id === parseInt(itemid);
+  let itemReq = productos.find((item) => {
+    return item.id === itemid;
   });
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (itemReq !== undefined) resolve(itemReq);
       else reject("Item no encontrado en la base de datos.");
-    }, 200);
+    }, 3000);
   });
 }
 
 export function getItemsByCategory(categoryid) {
-  let itemsCat = databaseItems.filter((item) => item.category === categoryid);
+  let itemsCat = productos.filter((item) => item.category === categoryid);
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {

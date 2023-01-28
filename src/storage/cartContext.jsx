@@ -23,7 +23,7 @@ export function CartContextProvider(props) {
   }
 
   function removeItem(idToDel) {
-    setCart(cart.pop());
+    //
   }
 
   function clearCart() {

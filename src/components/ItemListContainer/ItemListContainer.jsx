@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import FlexWrapper from "../flexWrapper/FlexWrapper";
-import Item from "../Item/Item";
 import getItems, { getItemsByCategory } from "../../services/mockAsyncService";
 import ItemList from "../itemList/ItemList";
+import Loader from "../Loader/Loader";
 
 function ItemListContainer() {
   const [products, setProducts] = useState([]);
 
   let idcategory = undefined;
 
-  // con .then .catch
-  /*  useEffect(() => {
+  useEffect(() => {
     if (idcategory) {
       getItems(idcategory).then((respuesta) => {
         setProducts(respuesta);
@@ -21,31 +19,17 @@ function ItemListContainer() {
         setProducts(respuesta);
       });
     }
-  }, []); */
-
-  //con async await - try catch
-  async function getProducts() {
-    if (!idcategory) {
-      try {
-        let response = await getItems();
-        setProducts(response);
-      } catch (error) {
-        alert(error);
-      }
-    } else {
-      let response = await getItemsByCategory(idcategory);
-      setProducts(response);
-    }
-  }
-
-  useEffect(() => {
-    getProducts();
   }, []);
 
+  //1 -> Rendering con Ternary Operator
   return (
     <>
       <div>
-        <ItemList products={products} />
+        {products.length === 0 ? (
+          <Loader color="pink" />
+        ) : (
+          <ItemList products={products} />
+        )}
       </div>
     </>
   );

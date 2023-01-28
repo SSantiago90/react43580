@@ -1,13 +1,10 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { cartContext } from "../../storage/cartContext";
 import Button from "../button/Button";
+import CartWidget from "./CartWidget";
 import "./navbar.css";
 import UserMenu from "./UserMenu";
 
 function NavBar({ onLogin }) {
-  const { getTotalItems } = useContext(cartContext);
-
   return (
     <nav>
       <ul className="nav-menu">
@@ -34,13 +31,12 @@ function NavBar({ onLogin }) {
             Ingresa tu nombre:
             <input name="username" placeholder="username" />
           </label>
-          <button type="submit">Buscar</button>
+          <Button type="submit" color="black">
+            Buscar
+          </Button>
         </form>
 
-        <span>
-          🛒
-          {getTotalItems()}
-        </span>
+        <CartWidget />
       </ul>
     </nav>
   );

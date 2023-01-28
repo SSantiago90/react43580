@@ -78,7 +78,14 @@ small{
   color: #8c8c8e;
 }
 
-.item-card_price{
+.item-card_price{  
+  font-size: 44px;
   color: #444444;
+  font-weight: bold;
+}
+
+.item-card_priceDiscount{
+  font-size: 44px;
+  color: #18aa18;
   font-weight: bold;
 }
