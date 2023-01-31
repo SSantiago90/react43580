@@ -7,13 +7,14 @@ import { cartContext } from "../../storage/cartContext";
 import { ButtonChild } from "../button/Button";
 
 import "./cart.css";
+import CartForm from "./CartForm";
 
 function CartContainer() {
   const { cart } = useContext(cartContext);
   const [orderId, setOrderId] = useState(null);
   const navigateTo = useNavigate();
 
-  async function handleCheckout(evt) {
+  async function handleCheckout(userData) {
     const items = cart.map((product) => ({
       id: product.id,
       title: product.title,
@@ -23,15 +24,13 @@ function CartContainer() {
 
     //1. modelo de orden de compra
     const order = {
-      buyer: {
-        name: "Santiago",
-        email: "s@s.com",
-        phone: 123456,
-      },
+      buyer: userData,
       items: items,
       date: new Date(),
       total: 1000,
     };
+
+    console.log(order);
 
     //2. Enviarla a firebase.js
     let id = await createBuyOrder(order);
@@ -93,7 +92,7 @@ function CartContainer() {
       <div className="cartList_detail">
         <h4>El total de tu compra es de $ --,--</h4>
       </div>
-      <ButtonChild onTouch={handleCheckout}>Finalizar Compra</ButtonChild>
+      <CartForm onSubmit={handleCheckout} />
     </>
   );
 }

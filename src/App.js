@@ -22,7 +22,6 @@ function App() {
     //3. Renderizamos el provider y su value
     <>
       <CartContextProvider>
-        <button onClick={exportDataWithBatch}>Export data</button>
         <BrowserRouter>
           <NavBar onLogin={handleLogin} />
           <Routes>
