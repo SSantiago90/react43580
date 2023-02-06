@@ -1,18 +1,10 @@
 import { useState } from "react";
+import useCount from "../../hooks/useCount";
 import Button, { ButtonChild } from "../button/Button";
 import "./itemcount.css";
 
 function ItemCount({ onAddToCart, stock }) {
-  const [count, setCount] = useState(0);
-
-  function handleAdd() {
-    if (count < stock) setCount(count + 1);
-  }
-
-  function handleSubstract() {
-    // validar -1 -2
-    setCount(count - 1);
-  }
+  const { count, handleAdd, handleSubstract } = useCount(stock);
 
   return (
     <div className="itemcount_container">

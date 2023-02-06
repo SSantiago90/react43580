@@ -19,7 +19,6 @@ function App() {
   }
 
   return (
-    //3. Renderizamos el provider y su value
     <>
       <CartContextProvider>
         <BrowserRouter>

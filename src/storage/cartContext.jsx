@@ -1,9 +1,12 @@
+import useCopy from "../hooks/useCopy";
 const { createContext, useState } = require("react");
 
 export const cartContext = createContext();
 
 export function CartContextProvider(props) {
   let [cart, setCart] = useState([]);
+
+  const newCart = useCopy(cart);
 
   function addItem(item) {
     // shallow copy - deep copy (JSON)
@@ -14,7 +17,6 @@ export function CartContextProvider(props) {
     const isInCart = cart.some((itemInCart) => itemInCart.id === item.id);
 
     if (isInCart) {
-      let newCart = [...cart];
       let index = cart.findIndex((itemInCart) => itemInCart.id === item.id);
       alert("el item ya está en el carrito");
     } else {
@@ -40,12 +42,19 @@ export function CartContextProvider(props) {
     return 999;
   }
 
+  function updateQty(id, count) {
+    let index = newCart.findIndex((item) => item.id === id);
+    newCart[index].count += count;
+    setCart(newCart);
+  }
+
   const value = {
     cart,
     addItem,
     getTotalItems,
     getTotalPriceInCart,
     removeItem,
+    updateQty,
   };
 
   return (

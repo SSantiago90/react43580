@@ -36,6 +36,12 @@ export async function getSingleItem(itemid) {
   const docRef = doc(db, "products", itemid);
   const snapshot = await getDoc(docRef);
 
+  console.log("exiuste->", snapshot.exists());
+
+  if (!snapshot.exists()) {
+    throw new Error("Documento inexistente en FireStore");
+  }
+
   //return  {...snapshot.data(), id: snapshot.id};
   const docData = snapshot.data();
   docData.id = snapshot.id;

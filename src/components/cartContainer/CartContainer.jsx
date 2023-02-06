@@ -10,7 +10,8 @@ import "./cart.css";
 import CartForm from "./CartForm";
 
 function CartContainer() {
-  const { cart } = useContext(cartContext);
+  const { cart, updateQty } = useContext(cartContext);
+
   const [orderId, setOrderId] = useState(null);
   const navigateTo = useNavigate();
 
@@ -77,12 +78,21 @@ function CartContainer() {
               </td>
               <td>{item.title}</td>
               <td>$ {item.price}</td>
-              <td>{item.count}</td>
               <td>
-                <ButtonChild color="#c63224" onClick={item.removeItem}>
+                <ButtonChild onTouch={() => updateQty(item.id, -1)}>
+                  -
+                </ButtonChild>
+                {item.count}
+                <ButtonChild onTouch={() => updateQty(item.id, 1)}>
+                  +
+                </ButtonChild>
+              </td>
+              <td>
+                <ButtonChild color="#c63224" onTouch={item.removeItem}>
                   X
                 </ButtonChild>
               </td>
+
               <th>$ --,--</th>
             </tr>
           ))}
