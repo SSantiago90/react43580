@@ -16,12 +16,12 @@ import {
 //1. Iniciar la conexión a Firestore
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC-QmGmyJonplsGjtZyy2oucyvHTvMlVGY",
-  authDomain: "react43580.firebaseapp.com",
-  projectId: "react43580",
-  storageBucket: "react43580.appspot.com",
-  messagingSenderId: "314259173416",
-  appId: "1:314259173416:web:3006aa00cdac013273451d",
+  apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+  authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
+  projectId: process.env.REACT_APP_PROYECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_SENDERID,
+  appId: process.env.REACT_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
